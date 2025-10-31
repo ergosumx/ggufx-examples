@@ -6,18 +6,19 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using ErgoX.VecraX.GgufX.Multimodal;
+using ErgoX.GgufX.Multimodal;
 
 namespace NanonetsOcr
 {
     internal static class Program
     {
-        private static readonly string ExampleRoot = @"C:\Users\nilayparikh\.sources\vecrax\ggufx\examples\nanonets_ocr";
-        private static readonly string InputDirectory = @"C:\Users\nilayparikh\.sources\vecrax\ggufx\examples\_io\original";
-        private static readonly string OutputDirectory = Path.Combine(ExampleRoot, "io", "output");
-        private static readonly string ModelsDirectory = Path.Combine(ExampleRoot, "model");
-        private static readonly string ModelPath = Path.Combine(ModelsDirectory, "Nanonets-OCR-s-Q4_K_M.gguf");
-        private static readonly string ProjectorPath = Path.Combine(ModelsDirectory, "mmproj-Nanonets-OCR-s.gguf");
+    private static readonly string ExampleRoot = ResolveProjectRoot();
+    private static readonly string ExamplesRoot = Path.GetFullPath(Path.Combine(ExampleRoot, ".."));
+    private static readonly string InputDirectory = Path.GetFullPath(Path.Combine(ExamplesRoot, "_io", "1024"));
+    private static readonly string OutputDirectory = Path.GetFullPath(Path.Combine(ExampleRoot, "io", "output"));
+    private static readonly string ModelsDirectory = Path.GetFullPath(Path.Combine(ExampleRoot, "model"));
+    private static readonly string ModelPath = Path.Combine(ModelsDirectory, "Nanonets-OCR-s-Q4_K_M.gguf");
+    private static readonly string ProjectorPath = Path.Combine(ModelsDirectory, "mmproj-Nanonets-OCR-s.gguf");
 
         private static readonly string[] SupportedImageExtensions =
         [
@@ -28,8 +29,6 @@ namespace NanonetsOcr
             ".webp",
             ".tiff"
         ];
-
-        // private const string Prompt = "Extract the text from the above document as if you were reading it naturally. Return the tables in html format. Return the equations in LaTeX representation. If there is an image in the document and image caption is not present, add a small description of the image inside the <img></img> tag; otherwise, add the image caption inside <img></img>. Watermarks should be wrapped in brackets. Ex: <watermark>OFFICIAL COPY</watermark>. Page numbers should be wrapped in brackets. Ex: <page_number>14</page_number> or <page_number>9/22</page_number>. Prefer using ☐ and ☑ for check boxes.";
 
         private const string Prompt = """
         <|im_start|>system
@@ -73,12 +72,12 @@ namespace NanonetsOcr
             }
             catch (GgufxNativeException ex)
             {
-                Console.Error.WriteLine($"Native runtime failed ({ex.StatusCode}): {ex.NativeMessage}");
+                await Console.Error.WriteLineAsync($"Native runtime failed ({ex.StatusCode}): {ex.NativeMessage}").ConfigureAwait(false);
                 return 1;
             }
             catch (FileNotFoundException ex)
             {
-                Console.Error.WriteLine(ex.Message);
+                await Console.Error.WriteLineAsync(ex.Message).ConfigureAwait(false);
                 return 1;
             }
         }
@@ -152,6 +151,25 @@ namespace NanonetsOcr
             }
 
             return resolved;
+        }
+
+        private static string ResolveProjectRoot()
+        {
+            var directory = Path.GetFullPath(AppContext.BaseDirectory);
+            const string projectFile = "nanonets_ocr.csproj";
+
+            while (!string.IsNullOrEmpty(directory))
+            {
+                var candidate = Path.Combine(directory, projectFile);
+                if (File.Exists(candidate))
+                {
+                    return directory;
+                }
+
+                directory = Directory.GetParent(directory)?.FullName ?? string.Empty;
+            }
+
+            throw new InvalidOperationException($"Unable to locate the project root containing '{projectFile}'.");
         }
     }
 }

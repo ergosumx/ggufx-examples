@@ -1,13 +1,13 @@
 # Nanonets OCR Sample
 
-This console sample demonstrates how to drive the Nanonets OCR multimodal model through the managed `ErgoX.VecraX.GgufX` library. It converts documents to Markdown using local IO folders and the shared runtime payload.
+This console sample demonstrates how to drive the Nanonets OCR multimodal model through the managed `ErgoX.GgufX` library. It converts documents to Markdown using local IO folders and the shared runtime payload.
 
 ## Prerequisites
 
 - Place the model assets in `examples/nanonets_ocr/model/`:
   - `Nanonets-OCR-s-UD-Q6_K_XL.gguf`
   - `mmproj-F16.gguf`
-- Ensure the GGUFx runtime DLLs exist under `src/ErgoX.VecraX.GgufX/runtimes/win-x64/` (handled by the library project).
+- Ensure the GGUFx runtime DLLs exist under `src/ErgoX.GgufX/runtimes/win-x64/` (handled by the library project).
 - Add page images into `examples/nanonets_ocr/io/input/`.
 
 ## Running
@@ -31,4 +31,4 @@ Each input image generates a Markdown file with the same base name. Existing fil
 
 - **Model missing**: Confirm both `.gguf` files are present in the `model/` folder.
 - **No input media**: Add PNG/JPEG/BMP/WEBP images to `io/input/`.
-- **Native errors**: Rebuild native assets and ensure runtimes were copied to `src/ErgoX.VecraX.GgufX/runtimes/win-x64/`.
+- **Native errors**: Rebuild native assets and ensure runtimes were copied to `src/ErgoX.GgufX/runtimes/win-x64/`.

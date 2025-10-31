@@ -6,16 +6,17 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using ErgoX.VecraX.GgufX.Multimodal;
+using ErgoX.GgufX.Multimodal;
 
 namespace GraniteDocling
 {
     internal static class Program
     {
-        private static readonly string ProjectRoot = @"C:\Users\nilayparikh\.sources\vecrax\ggufx\examples\granite_docling";
-        private static readonly string InputDirectory = @"C:\Users\nilayparikh\.sources\vecrax\ggufx\examples\_io\original";
-        private static readonly string OutputDirectory = Path.Combine(ProjectRoot, "io", "output");
-        private static readonly string ModelsDirectory = Path.Combine(ProjectRoot, "models");
+        private static readonly string ProjectRoot = ResolveProjectRoot();
+        private static readonly string ExamplesRoot = Path.GetFullPath(Path.Combine(ProjectRoot, ".."));
+        private static readonly string InputDirectory = Path.GetFullPath(Path.Combine(ExamplesRoot, "_io", "original"));
+        private static readonly string OutputDirectory = Path.GetFullPath(Path.Combine(ProjectRoot, "io", "output"));
+        private static readonly string ModelsDirectory = Path.GetFullPath(Path.Combine(ProjectRoot, "models"));
         private static readonly string ModelPath = Path.Combine(ModelsDirectory, "granite-docling-258M-Q8_0.gguf");
         private static readonly string ProjectorPath = Path.Combine(ModelsDirectory, "mmproj-granite-docling-258M-Q8_0.gguf");
 
@@ -60,12 +61,12 @@ namespace GraniteDocling
             }
             catch (GgufxNativeException ex)
             {
-                Console.Error.WriteLine($"Native runtime failed ({ex.StatusCode}): {ex.NativeMessage}");
+                await Console.Error.WriteLineAsync($"Native runtime failed ({ex.StatusCode}): {ex.NativeMessage}").ConfigureAwait(false);
                 return 1;
             }
             catch (FileNotFoundException ex)
             {
-                Console.Error.WriteLine(ex.Message);
+                await Console.Error.WriteLineAsync(ex.Message).ConfigureAwait(false);
                 return 1;
             }
         }
@@ -135,6 +136,25 @@ namespace GraniteDocling
             }
 
             return resolved;
+        }
+
+        private static string ResolveProjectRoot()
+        {
+            var directory = Path.GetFullPath(AppContext.BaseDirectory);
+            const string projectFile = "granite_docling.csproj";
+
+            while (!string.IsNullOrEmpty(directory))
+            {
+                var candidate = Path.Combine(directory, projectFile);
+                if (File.Exists(candidate))
+                {
+                    return directory;
+                }
+
+                directory = Directory.GetParent(directory)?.FullName ?? string.Empty;
+            }
+
+            throw new InvalidOperationException($"Unable to locate the project root containing '{projectFile}'.");
         }
     }
 }

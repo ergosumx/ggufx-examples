@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\ErgoX.VecraX.GgufX\ErgoX.VecraX.GgufX.csproj" />
+  <ProjectReference Include="..\..\src\ErgoX.GgufX\ErgoX.GgufX.csproj" />
   </ItemGroup>
 
 </Project>
