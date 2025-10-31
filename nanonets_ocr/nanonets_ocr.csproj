@@ -1,13 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <AssemblyName>GraniteDockling258M</AssemblyName>
-    <RootNamespace>GraniteDockling258M</RootNamespace>
+    <Nullable>enable</Nullable>
+    <AssemblyName>NanonetsOcr</AssemblyName>
+    <RootNamespace>NanonetsOcr</RootNamespace>
   </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\..\src\ErgoX.VecraX.GgufX\ErgoX.VecraX.GgufX.csproj" />
   </ItemGroup>
+
 </Project>
