@@ -1,0 +1,92 @@
+## Core repository .gitignore
+# Ignore build outputs
+bin/
+obj/
+Debug/
+Release/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider
+.idea/
+.idea/*
+*.sln.iml
+
+# Visual Studio Code
+.vscode/
+
+# NuGet
+*.nupkg
+packages/
+project.lock.json
+project.assets.json
+
+# Microsoft Azure Web App publish settings
+#*.PublishProfiles/
+
+# OS files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+*.DS_Store
+
+# dotnet local tools
+.dotnet_tools/
+
+# Runtime
+*.dll
+*.exe
+*.pdb
+*.cache
+
+# Logs
+*.log
+
+# Test folders
+TestResults/
+nunit-*.xml
+
+# Publish output
+publish/
+
+# Xamarin / MAUI
+obj/**/platforms/
+*.xaml.cs.designer.cs
+
+# NuGet Packages folder
+**/packages/*
+
+# Generated files
+**/Generated/
+
+# Local user-specific files
+*.userprefs
+
+.dev.configs/**
+Tests/**/*.settings.local.json
+tests/ErgoX.VecraX.GgufX.Tests/appsettings.Local.json
+
+
+.model/**
+
+
+#Ignore vscode AI rules
+.github\instructions\codacy.instructions.md
+
+#Ignore local scripts
+scripts/local/**
+
+.env
+.temp
+.tracker
+.models
+.runtimes
+runtimes/**
+*.gguf
+.dump/**
+examples/**/io/output/**
