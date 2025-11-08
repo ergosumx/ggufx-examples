@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using ErgoX.GgufX;
 using ErgoX.GgufX.Multimodal;
 
 /// <summary>
@@ -146,9 +147,9 @@ internal static class Program
     /// Builds session options aligned with Granite Vision prompt and batching defaults.
     /// </summary>
     /// <returns>Task producing a configured <see cref="GgufxMultimodalSessionOptions"/> instance.</returns>
-    private static async Task<GgufxMultimodalSessionOptions> BuildOptionsAsync()
+    private static Task<GgufxMultimodalSessionOptions> BuildOptionsAsync()
     {
-        return new GgufxMultimodalSessionOptions
+        var options = new GgufxMultimodalSessionOptions
         {
             ModelPath = EnsureFile(ModelPath),
             MmprojPath = EnsureFile(ProjectorPath),
@@ -167,6 +168,8 @@ internal static class Program
             ResetStateBetweenRequests = true,
             ResponseBufferSize = 8 * 1024 * 1024
         };
+
+        return Task.FromResult(options);
     }
 
     /// <summary>

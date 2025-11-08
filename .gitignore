@@ -67,11 +67,6 @@ obj/**/platforms/
 # Local user-specific files
 *.userprefs
 
-.dev.configs/**
-Tests/**/*.settings.local.json
-tests/ErgoX.VecraX.GgufX.Tests/appsettings.Local.json
-
-
 .model/**
 
 
@@ -88,5 +83,3 @@ scripts/local/**
 .runtimes
 runtimes/**
 *.gguf
-.dump/**
-examples/**/io/output/**

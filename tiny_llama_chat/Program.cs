@@ -42,7 +42,7 @@ namespace TinyLlamaChat
                     SystemPrompt = "You concisely summarise documents in two sentences or fewer.",
                 });
 
-            var document = "GGUFx is an enterprise-focused fork of llama.cpp that exposes a slim managed API for deterministic model hosting. " +
+            var document = "GGUFx is an enterprise-focused thin C++ runtime based on GGML & inspired by llama.cpp that exposes a slim managed API for deterministic model hosting. " +
                            "It maintains compatibility with the GGUF model ecosystem while layering in curated interop helpers and modern .NET abstractions.";
 
             Console.WriteLine("Original text: ");

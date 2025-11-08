@@ -6,19 +6,20 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using ErgoX.GgufX;
 using ErgoX.GgufX.Multimodal;
 
 namespace NanonetsOcr
 {
     internal static class Program
     {
-    private static readonly string ExampleRoot = ResolveProjectRoot();
-    private static readonly string ExamplesRoot = Path.GetFullPath(Path.Combine(ExampleRoot, ".."));
-    private static readonly string InputDirectory = Path.GetFullPath(Path.Combine(ExamplesRoot, "_io", "1024"));
-    private static readonly string OutputDirectory = Path.GetFullPath(Path.Combine(ExampleRoot, "io", "output"));
-    private static readonly string ModelsDirectory = Path.GetFullPath(Path.Combine(ExampleRoot, "model"));
-    private static readonly string ModelPath = Path.Combine(ModelsDirectory, "Nanonets-OCR-s-Q4_K_M.gguf");
-    private static readonly string ProjectorPath = Path.Combine(ModelsDirectory, "mmproj-Nanonets-OCR-s.gguf");
+        private static readonly string ExampleRoot = ResolveProjectRoot();
+        private static readonly string ExamplesRoot = Path.GetFullPath(Path.Combine(ExampleRoot, ".."));
+        private static readonly string InputDirectory = Path.GetFullPath(Path.Combine(ExamplesRoot, "_io", "1024"));
+        private static readonly string OutputDirectory = Path.GetFullPath(Path.Combine(ExampleRoot, "io", "output"));
+        private static readonly string ModelsDirectory = Path.GetFullPath(Path.Combine(ExampleRoot, "model"));
+        private static readonly string ModelPath = Path.Combine(ModelsDirectory, "Nanonets-OCR-s-Q4_K_M.gguf");
+        private static readonly string ProjectorPath = Path.Combine(ModelsDirectory, "mmproj-Nanonets-OCR-s.gguf");
 
         private static readonly string[] SupportedImageExtensions =
         [
