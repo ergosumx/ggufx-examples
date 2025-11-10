@@ -83,3 +83,6 @@ scripts/local/**
 .runtimes
 runtimes/**
 *.gguf
+
+#Temp
+chroma_sd
