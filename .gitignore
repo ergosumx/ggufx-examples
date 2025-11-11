@@ -86,3 +86,5 @@ runtimes/**
 
 #Temp
 chroma_sd
+whisper/model
+whisper_stream/model

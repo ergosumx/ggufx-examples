@@ -1,0 +1,13 @@
+Source: C:\Users\nilayparikh\.sources\vecrax\ggufx\examples\_io\audio\wav\jfk.wav
+Sample Rate: 16000 Hz
+Elapsed: 1.79s
+Language Id: 0
+Average Log Probability: -0.148
+Max No-Speech Probability: 0.000
+Grammar: disabled
+
+Transcript:
+ And so, my fellow Americans, ask not what your country can do for you, ask what you can do for your country.
+
+Segments:
+000 [00:00.290 -> 00:10.390]  And so, my fellow Americans, ask not what your country can do for you, ask what you can do for your country.
