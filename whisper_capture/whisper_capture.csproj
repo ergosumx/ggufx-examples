@@ -5,16 +5,13 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <AssemblyName>WhisperStreamExample</AssemblyName>
-    <RootNamespace>WhisperStreamExample</RootNamespace>
+    <AssemblyName>WhisperCapture</AssemblyName>
+    <RootNamespace>WhisperCapture</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\ErgoX.GgufX\ErgoX.GgufX.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="NAudio" Version="2.2.1" />
+    <ProjectReference Include="..\..\src\ErgoX.GgufX\ErgoX.GgufX.csproj" />
   </ItemGroup>
 
 </Project>

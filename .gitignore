@@ -88,3 +88,4 @@ runtimes/**
 chroma_sd
 whisper/model
 whisper_stream/model
+whisper_capture/*.wav
