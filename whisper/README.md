@@ -21,37 +21,25 @@ The command places `ggml-silero-v5.1.2.bin` in the sample's `model/` directory s
 
 ## Running the sample
 
-```bash
+```pwsh
 # From the repository root
 dotnet run --project examples/whisper/whisper.csproj
 ```
 
-Running without arguments executes a full demonstration using the bundled JFK recordings:
+Running without arguments transcribes the bundled JFK recording at `examples/_io/audio/wav/jfk.wav`, printing each decoded segment with timestamps followed by the aggregated transcript.
 
-- `examples/_io/audio/wav/jfk.wav`
-- `examples/_io/audio/mp3/jfk.mp3`
+### Realtime streaming
 
-Each clip is transcribed twice (baseline and grammar-guided) and the resulting transcripts are written to `examples/whisper/output/`.
+Pass the `stream` switch to exercise `GgufxAsrStreamingSession` with your default microphone (or loopback device when no microphone is detected):
 
-To target your own audio file, pass CLI arguments:
-
-```bash
-dotnet run --project examples/whisper/whisper.csproj -- --audio <path-to-audio>
+```pwsh
+dotnet run --project examples/whisper/whisper.csproj -- stream
 ```
 
-During execution the sample prints each decoded segment with timestamps, followed by the aggregated transcript.
-
-### Grammar-guided decoding
-
-The `examples/whisper/grammars/letters-only.gbnf` grammar restricts decoder output to alphabetic tokens and common punctuation. Combine it with the bundled JFK sample to observe grammar guidance end-to-end:
-
-```powershell
-dotnet run --project examples/whisper/whisper.csproj -- --audio examples/_io/audio/wav/jfk.wav --grammar examples/whisper/grammars/letters-only.gbnf --grammar-rule root
-```
-
-The console will confirm the active grammar and proceed with transcription under the specified constraints. Supply `--grammar-penalty <value>` to bias the decoder further away from out-of-grammar tokens when operating on noisy inputs.
+The console lists all detected audio devices, starts streaming for roughly 20 seconds, and emits partial/final tokens as they arrive. Press **Ctrl+C** at any time to stop early.
 
 ## Notes
 
-- The sample accepts WAV or MP3 input. MP3 clips are decoded and resampled to 16 kHz mono automatically.
+- The sample decodes the bundled WAV assets via `GgufxAsrAudioDecoder`, resampling to 16 kHz mono automatically.
 - The GGUFx runtime DLLs (including `ggufx-asr.dll`) must be present under `src/ErgoX.GgufX/runtimes/win-x64` so they are resolved at runtime.
+- Streaming requires a capture device that supports the configured sample rate (16 kHz by default); the helper prints the selected device and sample rate before opening the session.

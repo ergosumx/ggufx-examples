@@ -10,7 +10,7 @@ namespace WhisperExample
 {
     internal static class Program
     {
-        private const string ModelFileName = "ggml-large-v3-turbo-q5_0.bin";
+        private const string ModelFileName = "ggml-tiny.en-q5_1.bin";
         private const string VadModelFileName = "ggml-silero-v5.1.2.bin";
 
         private static readonly string[] DemoAudioFiles =
@@ -18,24 +18,34 @@ namespace WhisperExample
             Path.Combine("examples", "_io", "audio", "wav", "jfk.wav"),
         };
 
-        public static async Task<int> Main()
+        public static async Task<int> Main(string[]? args)
         {
             try
             {
-                Console.WriteLine("GGUFx Whisper quickstart\n");
+                Console.WriteLine("GGUFx Whisper Batch Transcription\n");
 
                 var projectRoot = ResolveProjectRoot();
                 var repositoryRoot = Path.GetFullPath(Path.Combine(projectRoot, "..", ".."));
 
+                using var cts = new CancellationTokenSource();
+                Console.CancelKeyPress += async (_, eventArgs) =>
+                {
+                    eventArgs.Cancel = true;
+                    await cts.CancelAsync().ConfigureAwait(false);
+                };
+                var cancellationToken = cts.Token;
+
                 ConfigureRuntime(repositoryRoot);
 
-                var contextOptions = BuildContextOptions(projectRoot);
+                var contextOptions = BuildContextOptions(projectRoot, out var modelPath);
+
                 using var session = GgufxAsrSession.Create(contextOptions);
 
                 foreach (var relativePath in DemoAudioFiles)
                 {
+                    cancellationToken.ThrowIfCancellationRequested();
                     var audioPath = EnsureFile(Path.Combine(repositoryRoot, relativePath));
-                    await TranscribeAsync(session, audioPath).ConfigureAwait(false);
+                    await TranscribeAsync(session, audioPath, cancellationToken).ConfigureAwait(false);
                 }
 
                 return 0;
@@ -47,10 +57,9 @@ namespace WhisperExample
             }
         }
 
-        private static GgufxAsrContextOptions BuildContextOptions(string projectRoot)
+        private static GgufxAsrContextOptions BuildContextOptions(string projectRoot, out string modelPath)
         {
-            var modelPath = EnsureFile(Path.Combine(projectRoot, "model", ModelFileName));
-            var vadModelPath = EnsureFile(Path.Combine(projectRoot, "model", VadModelFileName));
+            modelPath = EnsureFile(Path.Combine(projectRoot, "model", ModelFileName));
 
             return new GgufxAsrContextOptions(modelPath)
             {
@@ -58,14 +67,13 @@ namespace WhisperExample
                 ThreadCount = Math.Max(2, Environment.ProcessorCount / 2),
                 ProcessorCount = 1,
                 ResponseBufferSize = 512 * 1024,
-                VadEnable = GgufxTriState.Enabled,
-                VadModelPath = vadModelPath,
+                VadEnable = GgufxTriState.Disabled,
                 DebugMode = GgufxTriState.Disabled,
                 PrintProgress = GgufxTriState.Disabled,
             };
         }
 
-        private static async Task TranscribeAsync(GgufxAsrSession session, string audioPath)
+        private static async Task TranscribeAsync(GgufxAsrSession session, string audioPath, CancellationToken cancellationToken)
         {
             Console.WriteLine($"Transcribing {Path.GetFileName(audioPath)}");
 
@@ -74,14 +82,13 @@ namespace WhisperExample
             var request = new GgufxAsrRequestOptions(decodedAudio.Samples, decodedAudio.SampleRate)
             {
                 Language = "auto",
-                VadEnable = GgufxTriState.Enabled,
             };
 
             var stopwatch = Stopwatch.StartNew();
             var transcript = await session.TranscribeAsync(request, segment =>
             {
                 Console.WriteLine($"{segment.Index:D3} [{segment.Start:mm\\:ss\\.fff} → {segment.End:mm\\:ss\\.fff}] {segment.Text}");
-            }, CancellationToken.None).ConfigureAwait(false);
+            }, cancellationToken).ConfigureAwait(false);
             stopwatch.Stop();
 
             Console.WriteLine("\nTranscript:");
