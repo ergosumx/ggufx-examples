@@ -1,0 +1,31 @@
+# GBNF grammar for meeting control commands
+root ::= meeting_command
+
+meeting_command ::=
+    start_meeting |
+    end_meeting |
+    mute_command |
+    video_command |
+    screen_command |
+    participant_command
+
+start_meeting ::= ("start" | "begin" | "initiate") ws ("meeting" | "call" | "conference")
+end_meeting ::= ("end" | "stop" | "finish" | "terminate") ws ("meeting" | "call" | "conference")
+
+mute_command ::=
+    ("mute" | "unmute") ws? ("microphone" | "mic" | "audio")? |
+    ("turn" ws ("on" | "off") ws ("microphone" | "mic"))
+
+video_command ::=
+    ("start" | "stop" | "enable" | "disable") ws ("video" | "camera") |
+    ("turn" ws ("on" | "off") ws ("video" | "camera"))
+
+screen_command ::=
+    ("share" | "stop sharing" | "unshare") ws? ("screen" | "display")? |
+    ("start" | "stop") ws "screen" ws "sharing"
+
+participant_command ::=
+    ("show" | "hide") ws ("participants" | "attendees") |
+    ("open" | "close") ws ("participant" | "attendee") ws? ("list" | "panel")?
+
+ws ::= " " | "\t" | "\n"

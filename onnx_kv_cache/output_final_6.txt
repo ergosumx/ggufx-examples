@@ -1,0 +1,127 @@
+Loading ONNX models from c:\Users\nilayparikh\.sources\vecrax\ggufx\examples\onnx_kv_cache\model\encoder_model_q4f16.onnx and c:\Users\nilayparikh\.sources\vecrax\ggufx\examples\onnx_kv_cache\model\decoder_model_merged_q4f16.onnx...
+Loading Tokenizer from C:\Users\nilayparikh\.sources\vecrax\ggufx\examples\onnx_kv_cache\tokenizer...
+Session initialized successfully.
+Input: translate English to German: Hi, my name is Nilay, what is your name?
+Input IDs: 13959, 1566, 12, 2968, 10, 2018, 6, 82, 564, 19, 2504, 5595, 6, 125, 19, 39, 564, 58, 1
+Generating...
+llama_kv_cache: layer   0: dev = CPU
+llama_kv_cache: layer   1: dev = CPU
+llama_kv_cache: layer   2: dev = CPU
+llama_kv_cache: layer   3: dev = CPU
+llama_kv_cache: layer   4: dev = CPU
+llama_kv_cache: layer   5: dev = CPU
+llama_kv_cache: reusing layers:
+llama_kv_cache: - layer   0: no reuse
+llama_kv_cache: - layer   1: no reuse
+llama_kv_cache: - layer   2: no reuse
+llama_kv_cache: - layer   3: no reuse
+llama_kv_cache: - layer   4: no reuse
+llama_kv_cache: - layer   5: no reuse
+llama_kv_cache:        CPU KV buffer size =    24.00 MiB
+llama_kv_cache: size =   24.00 MiB (  2048 cells,   6 layers,  1/1 seqs), K (f16):   12.00 MiB, V (f16):   12.00 MiB
+DEBUG: Update L0 K_view data=000002E33D934080 nb=[2, 128, 1024, 2097152]
+DEBUG: L0 P0 H0 D0: K nb=[2, 1024, 2097152, 2097152], ne=[512, 2048, 1, 1]
+DEBUG: L0 P0 H0 D0: V nb=[2, 1024, 2097152, 2097152], ne=[512, 2048, 1, 1]
+DEBUG: L0 P0 H0 D0: k_val=-0.566895
+DEBUG: Update L0 K_view data=000002E33D934080 nb=[2, 128, 1024, 2097152]
+DEBUG: L0 P0 H0 D0: K nb=[2, 1024, 2097152, 2097152], ne=[512, 2048, 1, 1]
+DEBUG: L0 P0 H0 D0: V nb=[2, 1024, 2097152, 2097152], ne=[512, 2048, 1, 1]
+DEBUG: L0 P0 H0 D0: k_val=-0.566895
+DEBUG: L0 P1 H0 D0: k_val=1.373047
+DEBUG: Update L0 K_view data=000002E33D934080 nb=[2, 128, 1024, 2097152]
+DEBUG: L0 P0 H0 D0: K nb=[2, 1024, 2097152, 2097152], ne=[512, 2048, 1, 1]
+DEBUG: L0 P0 H0 D0: V nb=[2, 1024, 2097152, 2097152], ne=[512, 2048, 1, 1]
+DEBUG: L0 P0 H0 D0: k_val=-0.566895
+DEBUG: L0 P1 H0 D0: k_val=1.373047
+DEBUG: L0 P2 H0 D0: k_val=0.500000
+DEBUG: Update L0 K_view data=000002E33D934080 nb=[2, 128, 1024, 2097152]
+DEBUG: L0 P0 H0 D0: K nb=[2, 1024, 2097152, 2097152], ne=[512, 2048, 1, 1]
+DEBUG: L0 P0 H0 D0: V nb=[2, 1024, 2097152, 2097152], ne=[512, 2048, 1, 1]
+DEBUG: L0 P0 H0 D0: k_val=-0.566895
+DEBUG: L0 P1 H0 D0: k_val=1.373047
+DEBUG: L0 P2 H0 D0: k_val=0.500000
+DEBUG: L0 P3 H0 D0: k_val=0.277588
+DEBUG: Update L0 K_view data=000002E33D934080 nb=[2, 128, 1024, 2097152]
+DEBUG: L0 P0 H0 D0: K nb=[2, 1024, 2097152, 2097152], ne=[512, 2048, 1, 1]
+DEBUG: L0 P0 H0 D0: V nb=[2, 1024, 2097152, 2097152], ne=[512, 2048, 1, 1]
+DEBUG: L0 P0 H0 D0: k_val=-0.566895
+DEBUG: L0 P1 H0 D0: k_val=1.373047
+DEBUG: L0 P2 H0 D0: k_val=0.500000
+DEBUG: L0 P3 H0 D0: k_val=0.277588
+DEBUG: L0 P4 H0 D0: k_val=-0.677734
+DEBUG: Update L0 K_view data=000002E33D934080 nb=[2, 128, 1024, 2097152]
+DEBUG: L0 P0 H0 D0: K nb=[2, 1024, 2097152, 2097152], ne=[512, 2048, 1, 1]
+DEBUG: L0 P0 H0 D0: V nb=[2, 1024, 2097152, 2097152], ne=[512, 2048, 1, 1]
+DEBUG: L0 P0 H0 D0: k_val=-0.566895
+DEBUG: L0 P1 H0 D0: k_val=1.373047
+DEBUG: L0 P2 H0 D0: k_val=0.500000
+DEBUG: L0 P3 H0 D0: k_val=0.277588
+DEBUG: L0 P4 H0 D0: k_val=-0.677734
+DEBUG: Update L0 K_view data=000002E33D934080 nb=[2, 128, 1024, 2097152]
+DEBUG: L0 P0 H0 D0: K nb=[2, 1024, 2097152, 2097152], ne=[512, 2048, 1, 1]
+DEBUG: L0 P0 H0 D0: V nb=[2, 1024, 2097152, 2097152], ne=[512, 2048, 1, 1]
+DEBUG: L0 P0 H0 D0: k_val=-0.566895
+DEBUG: L0 P1 H0 D0: k_val=1.373047
+DEBUG: L0 P2 H0 D0: k_val=0.500000
+DEBUG: L0 P3 H0 D0: k_val=0.277588
+DEBUG: L0 P4 H0 D0: k_val=-0.677734
+DEBUG: Update L0 K_view data=000002E33D934080 nb=[2, 128, 1024, 2097152]
+DEBUG: L0 P0 H0 D0: K nb=[2, 1024, 2097152, 2097152], ne=[512, 2048, 1, 1]
+DEBUG: L0 P0 H0 D0: V nb=[2, 1024, 2097152, 2097152], ne=[512, 2048, 1, 1]
+DEBUG: L0 P0 H0 D0: k_val=-0.566895
+DEBUG: L0 P1 H0 D0: k_val=1.373047
+DEBUG: L0 P2 H0 D0: k_val=0.500000
+DEBUG: L0 P3 H0 D0: k_val=0.277588
+DEBUG: L0 P4 H0 D0: k_val=-0.677734
+DEBUG: Update L0 K_view data=000002E33D934080 nb=[2, 128, 1024, 2097152]
+DEBUG: L0 P0 H0 D0: K nb=[2, 1024, 2097152, 2097152], ne=[512, 2048, 1, 1]
+DEBUG: L0 P0 H0 D0: V nb=[2, 1024, 2097152, 2097152], ne=[512, 2048, 1, 1]
+DEBUG: L0 P0 H0 D0: k_val=-0.566895
+DEBUG: L0 P1 H0 D0: k_val=1.373047
+DEBUG: L0 P2 H0 D0: k_val=0.500000
+DEBUG: L0 P3 H0 D0: k_val=0.277588
+DEBUG: L0 P4 H0 D0: k_val=-0.677734
+DEBUG: Update L0 K_view data=000002E33D934080 nb=[2, 128, 1024, 2097152]
+DEBUG: L0 P0 H0 D0: K nb=[2, 1024, 2097152, 2097152], ne=[512, 2048, 1, 1]
+DEBUG: L0 P0 H0 D0: V nb=[2, 1024, 2097152, 20Output Tokens: 2501, 32, 6, 7519, 5570, 229, 2504, 5595, 6, 47, 229, 2310, 5570, 58, 1
+Output: Hallo, mein Name ist Nilay, was ist Ihr Name?
+Done.
+97152], ne=[512, 2048, 1, 1]
+DEBUG: L0 P0 H0 D0: k_val=-0.566895
+DEBUG: L0 P1 H0 D0: k_val=1.373047
+DEBUG: L0 P2 H0 D0: k_val=0.500000
+DEBUG: L0 P3 H0 D0: k_val=0.277588
+DEBUG: L0 P4 H0 D0: k_val=-0.677734
+DEBUG: Update L0 K_view data=000002E33D934080 nb=[2, 128, 1024, 2097152]
+DEBUG: L0 P0 H0 D0: K nb=[2, 1024, 2097152, 2097152], ne=[512, 2048, 1, 1]
+DEBUG: L0 P0 H0 D0: V nb=[2, 1024, 2097152, 2097152], ne=[512, 2048, 1, 1]
+DEBUG: L0 P0 H0 D0: k_val=-0.566895
+DEBUG: L0 P1 H0 D0: k_val=1.373047
+DEBUG: L0 P2 H0 D0: k_val=0.500000
+DEBUG: L0 P3 H0 D0: k_val=0.277588
+DEBUG: L0 P4 H0 D0: k_val=-0.677734
+DEBUG: Update L0 K_view data=000002E33D934080 nb=[2, 128, 1024, 2097152]
+DEBUG: L0 P0 H0 D0: K nb=[2, 1024, 2097152, 2097152], ne=[512, 2048, 1, 1]
+DEBUG: L0 P0 H0 D0: V nb=[2, 1024, 2097152, 2097152], ne=[512, 2048, 1, 1]
+DEBUG: L0 P0 H0 D0: k_val=-0.566895
+DEBUG: L0 P1 H0 D0: k_val=1.373047
+DEBUG: L0 P2 H0 D0: k_val=0.500000
+DEBUG: L0 P3 H0 D0: k_val=0.277588
+DEBUG: L0 P4 H0 D0: k_val=-0.677734
+DEBUG: Update L0 K_view data=000002E33D934080 nb=[2, 128, 1024, 2097152]
+DEBUG: L0 P0 H0 D0: K nb=[2, 1024, 2097152, 2097152], ne=[512, 2048, 1, 1]
+DEBUG: L0 P0 H0 D0: V nb=[2, 1024, 2097152, 2097152], ne=[512, 2048, 1, 1]
+DEBUG: L0 P0 H0 D0: k_val=-0.566895
+DEBUG: L0 P1 H0 D0: k_val=1.373047
+DEBUG: L0 P2 H0 D0: k_val=0.500000
+DEBUG: L0 P3 H0 D0: k_val=0.277588
+DEBUG: L0 P4 H0 D0: k_val=-0.677734
+DEBUG: Update L0 K_view data=000002E33D934080 nb=[2, 128, 1024, 2097152]
+DEBUG: L0 P0 H0 D0: K nb=[2, 1024, 2097152, 2097152], ne=[512, 2048, 1, 1]
+DEBUG: L0 P0 H0 D0: V nb=[2, 1024, 2097152, 2097152], ne=[512, 2048, 1, 1]
+DEBUG: L0 P0 H0 D0: k_val=-0.566895
+DEBUG: L0 P1 H0 D0: k_val=1.373047
+DEBUG: L0 P2 H0 D0: k_val=0.500000
+DEBUG: L0 P3 H0 D0: k_val=0.277588
+DEBUG: L0 P4 H0 D0: k_val=-0.677734
+DEBUG: Update L0 K_view data=000002E33D934080 nb=[2, 128, 1024, 2097152]

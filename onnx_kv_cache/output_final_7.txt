@@ -1,0 +1,24 @@
+Loading ONNX models from c:\Users\nilayparikh\.sources\vecrax\ggufx\examples\onnx_kv_cache\model\encoder_model_q4f16.onnx and c:\Users\nilayparikh\.sources\vecrax\ggufx\examples\onnx_kv_cache\model\decoder_model_merged_q4f16.onnx...
+Loading Tokenizer from C:\Users\nilayparikh\.sources\vecrax\ggufx\examples\onnx_kv_cache\tokenizer...
+Session initialized successfully.
+Input: translate English to German: Hi, my name is Nilay, what is your name?
+Input IDs: 13959, 1566, 12, 2968, 10, 2018, 6, 82, 564, 19, 2504, 5595, 6, 125, 19, 39, 564, 58, 1
+Generating...
+Output Tokens: 2501, 32, 6, 7519, 5570, 229, 2504, 5595, 6, 47, 229, 2310, 5570, 58, 1
+Output: Hallo, mein Name ist Nilay, was ist Ihr Name?
+Done.
+llama_kv_cache: layer   0: dev = CPU
+llama_kv_cache: layer   1: dev = CPU
+llama_kv_cache: layer   2: dev = CPU
+llama_kv_cache: layer   3: dev = CPU
+llama_kv_cache: layer   4: dev = CPU
+llama_kv_cache: layer   5: dev = CPU
+llama_kv_cache: reusing layers:
+llama_kv_cache: - layer   0: no reuse
+llama_kv_cache: - layer   1: no reuse
+llama_kv_cache: - layer   2: no reuse
+llama_kv_cache: - layer   3: no reuse
+llama_kv_cache: - layer   4: no reuse
+llama_kv_cache: - layer   5: no reuse
+llama_kv_cache:        CPU KV buffer size =    24.00 MiB
+llama_kv_cache: size =   24.00 MiB (  2048 cells,   6 layers,  1/1 seqs), K (f16):   12.00 MiB, V (f16):   12.00 MiB

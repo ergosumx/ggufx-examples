@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\ErgoX.GgufX\ErgoX.GgufX.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ErgoX.TokenX.HuggingFace" Version="0.22.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\..\vecrax\build\src\plugins\Release\ggufx-lm.dll">
+      <Link>ggufx-lm.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\vecrax\third_party\onnxruntime\windows\lib\onnxruntime.dll">
+      <Link>onnxruntime.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

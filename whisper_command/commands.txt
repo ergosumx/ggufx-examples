@@ -1,0 +1,10 @@
+play
+pause
+stop
+next
+previous
+volume up
+volume down
+mute
+unmute
+record
