@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
@@ -41,10 +42,11 @@ namespace WhisperExample
 
                 using var session = GgufxAsrSession.Create(contextOptions);
 
-                foreach (var relativePath in DemoAudioFiles)
+                var audioInputs = ResolveAudioInputs(args, repositoryRoot);
+
+                foreach (var audioPath in audioInputs)
                 {
                     cancellationToken.ThrowIfCancellationRequested();
-                    var audioPath = EnsureFile(Path.Combine(repositoryRoot, relativePath));
                     await TranscribeAsync(session, audioPath, cancellationToken).ConfigureAwait(false);
                 }
 
@@ -67,10 +69,64 @@ namespace WhisperExample
                 ThreadCount = Math.Max(2, Environment.ProcessorCount / 2),
                 ProcessorCount = 1,
                 ResponseBufferSize = 512 * 1024,
+                UseGpu = GgufxTriState.Disabled,
+                FlashAttention = GgufxTriState.Disabled,
                 VadEnable = GgufxTriState.Disabled,
                 DebugMode = GgufxTriState.Disabled,
                 PrintProgress = GgufxTriState.Disabled,
             };
+        }
+
+        private static IReadOnlyList<string> ResolveAudioInputs(string[]? args, string repositoryRoot)
+        {
+            if (args is null || args.Length == 0)
+            {
+                var defaults = new List<string>(DemoAudioFiles.Length);
+                foreach (var relativePath in DemoAudioFiles)
+                {
+                    defaults.Add(EnsureFile(Path.Combine(repositoryRoot, relativePath)));
+                }
+
+                return defaults;
+            }
+
+            var resolvedFiles = new List<string>();
+            for (var i = 0; i < args.Length; i++)
+            {
+                var current = args[i];
+                if (string.Equals(current, "--file", StringComparison.OrdinalIgnoreCase) ||
+                    string.Equals(current, "-f", StringComparison.OrdinalIgnoreCase))
+                {
+                    if (i + 1 >= args.Length)
+                    {
+                        throw new ArgumentException("Missing value for --file argument.");
+                    }
+
+                    current = args[++i];
+                }
+
+                string candidatePath;
+                if (Path.IsPathRooted(current))
+                {
+                    candidatePath = current;
+                }
+                else
+                {
+                    var repoRelative = Path.Combine(repositoryRoot, current);
+                    candidatePath = File.Exists(repoRelative)
+                        ? repoRelative
+                        : Path.GetFullPath(current);
+                }
+
+                resolvedFiles.Add(EnsureFile(candidatePath));
+            }
+
+            if (resolvedFiles.Count == 0)
+            {
+                throw new ArgumentException("No audio files were provided.");
+            }
+
+            return resolvedFiles;
         }
 
         private static async Task TranscribeAsync(GgufxAsrSession session, string audioPath, CancellationToken cancellationToken)
@@ -98,7 +154,7 @@ namespace WhisperExample
 
         private static void ConfigureRuntime(string repositoryRoot)
         {
-            var runtimeDirectory = Path.Combine(repositoryRoot, "src", "ErgoX.GgufX", "runtimes", "win-x64");
+            var runtimeDirectory = Path.Combine(repositoryRoot, "src", "ErgoX.GgufX", "runtimes", "win-x64", "native");
             if (!Directory.Exists(runtimeDirectory))
             {
                 throw new DirectoryNotFoundException($"Runtime directory not found: {runtimeDirectory}");

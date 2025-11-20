@@ -89,3 +89,5 @@ chroma_sd
 whisper/model
 whisper_stream/model
 whisper_capture/*.wav
+_io/
+_io/
