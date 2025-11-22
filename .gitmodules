@@ -1,3 +1,0 @@
-[submodule "models/guardrails"]
-	path = models/guardrails
-	url = https://github.com/nilayparikh/whitelightning-model-library.git
