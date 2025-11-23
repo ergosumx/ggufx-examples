@@ -11,6 +11,9 @@ class Program
 {
     static async Task Main(string[] args)
     {
+        // Initialize GgufX to ensure correct native libraries (onnxruntime.dll) are loaded
+        GgufxOnnxSession.Initialize();
+
         string encoderPath = @"c:\Users\nilayparikh\.sources\vecrax\ggufx\examples\onnx_kv_cache\model\encoder_model_q4f16.onnx";
         string decoderPath = @"c:\Users\nilayparikh\.sources\vecrax\ggufx\examples\onnx_kv_cache\model\decoder_model_merged_q4f16.onnx";
         string t5Dir = @"C:\Users\nilayparikh\.sources\vecrax\ggufx\examples\onnx_kv_cache\tokenizer";

@@ -153,8 +153,8 @@ internal static class Program
             VadThreshold = 0.01f,  // VERY LOW - almost any sound will trigger (testing)
             CommandDurationMs = 3000,  // 3 seconds for command
             ThreadCount = 4,
-            UseGpu = GgufxTriState.Enabled,
-            FlashAttention = GgufxTriState.Enabled,
+            UseGpu = GgufxTriState.Default,
+            FlashAttention = GgufxTriState.Default,
             SuppressLogs = false,  // Enable native logging to debug
 
             // *** ACCURACY TUNING PARAMETERS - ALL CONFIGURABLE ***
@@ -203,8 +203,8 @@ internal static class Program
             PromptDurationMs = 5000,     // 5 seconds for activation
             CommandDurationMs = 8000,    // 8 seconds for command
             ThreadCount = 4,
-            UseGpu = GgufxTriState.Enabled,
-            FlashAttention = GgufxTriState.Enabled,
+            UseGpu = GgufxTriState.Default,
+            FlashAttention = GgufxTriState.Default,
             SuppressLogs = false
         };
 
@@ -227,8 +227,8 @@ internal static class Program
             CommandDurationMs = 10000,   // 10 seconds for general speech
             MaxTokens = 128,              // More tokens for longer transcriptions
             ThreadCount = 4,
-            UseGpu = GgufxTriState.Enabled,
-            FlashAttention = GgufxTriState.Enabled,
+            UseGpu = GgufxTriState.Default,
+            FlashAttention = GgufxTriState.Default,
             SuppressLogs = false,
             Language = "en"
         };
