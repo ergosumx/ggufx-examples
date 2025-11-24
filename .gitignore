@@ -94,3 +94,4 @@ _io/
 **/model/
 .gitignore
 models
+# Ignore model artifacts\nmodels/\nmodels/*\n
