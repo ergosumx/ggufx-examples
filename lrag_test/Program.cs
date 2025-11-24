@@ -207,6 +207,7 @@ class Program
                     }
 
                     // Ingest Root Node (Title)
+                    /*
                     var rootNode = new LragNode
                     {
                         Id = rootId,
@@ -217,9 +218,11 @@ class Program
                         Tags = "Root"
                     };
                     engine.Ingest(rootNode);
+                    */
 
                     // Chunking Logic (Target ~512 tokens / 2000 chars)
                     var paragraphs = System.Text.RegularExpressions.Regex.Split(fullText, @"\n\s*\n");
+                    // var paragraphs = new string[] { fullText };
                     int paraIdx = 0;
                     var currentChunk = new StringBuilder();
                     int currentChunkStartPara = 0;
@@ -232,7 +235,8 @@ class Program
                             Id = (uint)Interlocked.Increment(ref nextDocId) - 1,
                             ParentId = rootId,
                             RootDocId = rootId,
-                            Text = currentChunk.ToString().Trim(),
+                            // Prepend Title to every chunk to preserve context
+                            Text = $"{item.Title}\n{currentChunk.ToString().Trim()}",
                             Context = $"{item.Title} > P{currentChunkStartPara}-{paraIdx}",
                             Tags = "General"
                         };
